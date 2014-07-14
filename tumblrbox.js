@@ -82,7 +82,7 @@
           'showCloseButton': false,
           'hideOnContentClick': true,
           }
-        });
+        );
         console.debug($tumblr_pics.length+' tumblr pictures tumblrboxed');
 
         // Make it more responsive over click intents
