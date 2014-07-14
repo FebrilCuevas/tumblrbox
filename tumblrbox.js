@@ -1,5 +1,3 @@
-  <!-- Start of Tumblrbox Code -->
-<script type='text/javascript'>
 /*
  * tumblrbox - Lightbox effect for Tumblr
  * using FancyBox
@@ -112,5 +110,3 @@
   load_file('http://picuous.github.com/tumblrbox/lib/jquery.fancybox.css');
 
 })();
-</script>
-<!-- End of Tumblrbox Code -->
