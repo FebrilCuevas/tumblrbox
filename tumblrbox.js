@@ -5,7 +5,7 @@
  * Copyright (c) 2011 Picuous
  * Forked and edited by @FebrilCuevas
  *
- * Version: 1
+ * Version: 2
  *
  * Licensed under the MIT license
  *   http://www.opensource.org/licenses/mit-license.php
@@ -61,34 +61,36 @@
     };
     head.appendChild(script);
   }
-  load_file('http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js', function() {
+  load_file('http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js', function() {
     if(typeof jQuery=='undefined') {
       console.debug('Sorry, but jQuery wasn\'t able to load');
     } else {
       $ = jQuery.noConflict();
       console.debug('loaded '+$.fn.jquery);
-      load_file('http://picuous.github.com/tumblrbox/lib/jquery.fancybox.min.js', function() {
+      load_file('//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.js', function() {
         console.debug('loaded fancybox');
 
         var $tumblr_pics = $('a[href*=".media.tumblr.com/"]>img[src*=".media.tumblr.com/"]').parent();
         $tumblr_pics.fancybox({
+    helpers : {
+        overlay : {
+            css : {
+                'background' : 'rgba(0, 0, 0, 0.85)'
+                  }
+                  }
+              }
+        });
+        $tumblr_pics.fancybox({
           'type': 'image',
-          'transitionIn': 'elastic',
-          'transitionOut': 'elastic',
-          'opacity': true,
           'padding': 0,
-          'overlayOpacity': 0.95,
-          'overlayColor': '#111',
-          'showCloseButton': false,
-          'hideOnContentClick': true,
-          }
-        );
+          'closeBtn': false,
+          'autoCenter': true,
+          'autoResize': true,
+          'autoSize': true
+          });
+
         console.debug($tumblr_pics.length+' tumblr pictures tumblrboxed');
 
-        // Make it more responsive over click intents
-        $tumblr_pics.hover(function() {
-          (new Image()).src = $(this).attr('href');
-        });
 
         // Flickr doesn't allow displaying its content as in an iframe
         /*var $flickr_pics = $('a[href*="http://www.flickr.com/photos"]>img[src*="media.tumblr.com"]').parent();
@@ -107,6 +109,6 @@
   });
 
   // Add CSS
-  load_file('http://picuous.github.com/tumblrbox/lib/jquery.fancybox.css');
+  load_file('//cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css');
 
 })();
